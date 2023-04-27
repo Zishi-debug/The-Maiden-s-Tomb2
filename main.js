@@ -4,8 +4,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 //import { Outline } from 'three/addons/postprocessing/TexturePass.js';
@@ -41,6 +39,8 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 		const canvas = document.querySelector('#c');
         const backgroundColor = 0xecf2e6;
 
+	
+
 		// Init the scene
         scene = new THREE.Scene();
         scene.background = new THREE.Color(backgroundColor);
@@ -69,12 +69,13 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
         camera.position.y = -22;
 		camera.lookAt(new THREE.Vector3(0,-2.5,0));
 
-		//composer
-		const composer = new EffectComposer( renderer );
-		const renderPass = new RenderPass( scene, camera );
-		composer.addPass( renderPass );
-
 	
+
+		
+
+
+
+		
 
 		const loader = new GLTFLoader();
 	
@@ -254,6 +255,21 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 			playOnClick(0);
 			playOnClick(6);
 			playOnClick(10);
+			// create an AudioListener and add it to the camera
+			const listener = new THREE.AudioListener();
+			//camera.add( listener );
+			// create a global audio source
+			const sound = new THREE.Audio( listener );
+			const file = './sounds/685106__itinerantmonk108__sliding-wooden-door.wav';
+
+			// load a sound and set it as the Audio object's buffer
+			const audioLoader = new THREE.AudioLoader();
+			audioLoader.load( file, function( buffer ) {
+				sound.setBuffer( buffer );
+				//sound.setLoop( true );
+				sound.setVolume( 0.5 );
+				sound.play();
+		});
 		}
 		}
 
@@ -268,6 +284,8 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 			
 	}
 	} 
+     
+
 
 	// Get a animation, and play it 
 	function playOnClick(anim) {
