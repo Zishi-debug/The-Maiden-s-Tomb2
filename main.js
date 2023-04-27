@@ -257,11 +257,10 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 			playOnClick(10);
 			// create an AudioListener and add it to the camera
 			const listener = new THREE.AudioListener();
-			//camera.add( listener );
+	
 			// create a global audio source
 			const sound = new THREE.Audio( listener );
-			const file = './sounds/685106__itinerantmonk108__sliding-wooden-door.wav';
-
+			const file = './sounds/clip1.1.wav';
 			// load a sound and set it as the Audio object's buffer
 			const audioLoader = new THREE.AudioLoader();
 			audioLoader.load( file, function( buffer ) {
@@ -279,9 +278,45 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 				playOnClick(1);
 				playOnClick(7);
 				playOnClick(11);
-			}
-			}
+
+			// create an AudioListener and add it to the camera
+			const listener = new THREE.AudioListener();
+	
+			// create a global audio source
+			const sound = new THREE.Audio( listener );
+			const file = './sounds/clip2-[AudioTrimmer.com].wav';
+			// load a sound and set it as the Audio object's buffer
+			const audioLoader = new THREE.AudioLoader();
+			audioLoader.load( file, function( buffer ) {
+				sound.setBuffer( buffer );
+				//sound.setLoop( true );
+				sound.setVolume( 0.5 );
+				sound.play();
+		});
+
 			
+		}
+		}
+
+		if (object.name !== 'disk002'||'disk001') {
+		
+
+			// create an AudioListener and add it to the camera
+			const listener = new THREE.AudioListener();
+	
+			// create a global audio source
+			const sound = new THREE.Audio( listener );
+			const file = './sounds/hoo.wav';
+			// load a sound and set it as the Audio object's buffer
+			const audioLoader = new THREE.AudioLoader();
+			audioLoader.load( file, function( buffer ) {
+				sound.setBuffer( buffer );
+				//sound.setLoop( true );
+				sound.setVolume( 0.5 );
+				sound.play();
+		});
+		}
+		
 	}
 	} 
      
