@@ -1,17 +1,12 @@
 
 import * as THREE from 'three';
-
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-//import { Outline } from 'three/addons/postprocessing/TexturePass.js';
 
 
 (function() {
 	
-	// Set our main variables
+	// Set my main variables
 	let scene,  
 	  renderer,
 	  composer,
@@ -19,18 +14,14 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 	  model,                              // Our model
 	  neck,                               // Reference to the neck bone in the skeleton
 	  waist,                               // Reference to the waist bone in the skeleton
-	  neck2,                               // Reference to the neck bone in the skeleton
-	  waist2,  
+	  neck2,                               // Reference to the neck2 bone in the skeleton
+	  waist2,  								// Reference to the waist2 bone in the skeleton
 	  possibleAnims,                      // Animations found in our file
 	  mixer,                              // THREE.js animations mixer
 	  idle,                               // Idle, the default state our character returns to
 	  clock = new THREE.Clock(),          // Used for anims, which run to a clock instead of frame rate 
 	  currentlyAnimating = false,         // Used to check whether characters neck is being used in another anim
 	  raycaster = new THREE.Raycaster(); // Used to detect the click on our character
-	  //loaderAnim = document.getElementById('js-loader');
-
-	  
-
 	  
 	  init(); 
 
@@ -68,13 +59,6 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
         camera.position.x = 10;
         camera.position.y = -22;
 		camera.lookAt(new THREE.Vector3(0,-2.5,0));
-
-	
-
-		
-
-
-
 		
 
 		const loader = new GLTFLoader();
@@ -92,8 +76,8 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 				  }
 				if (o.isMesh) {
 				  o.castShadow = true;
-				  //o.receiveShadow = true;
-				  //o.material = stacy_mtl; // Add this line
+				  o.receiveShadow = true;
+				 
 				}
 				 // Reference the neck and waist bones
 				if (o.isBone && o.name === 'Bone009') { 
@@ -116,33 +100,30 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 			model.position.y = -11.3;
 
 			scene.add(model);
-			//loaderAnim.remove();
+			
             
 			//play animations
 			mixer = new THREE.AnimationMixer(model);
-			//mixer.clipAction( gltf.animations[1] ).play();
 
 			let clips = fileAnimations.filter(val => val.name );
 			
 			possibleAnims = clips.map(val => {
-				let clip = THREE.AnimationClip.findByName(clips, val.name);
-				
+				let clip = THREE.AnimationClip.findByName(clips, val.name);			
 				 clip.tracks.splice(6,3);
 			     clip.tracks.splice(18,3);
 			     clip.tracks.splice(36,3);
 			     clip.tracks.splice(42,3);
-				clip = mixer.clipAction(clip);
+				 clip = mixer.clipAction(clip);
 				return clip;
 			   }
 			  );
 
 			let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idel');
 			idle = mixer.clipAction(idleAnim);
-			//idle.timeScale = 1/5 ;
 			idle.play();
 			console.log(idleAnim);
 			},
-			undefined, // We don't need this function
+			undefined, 
 			function(error) {
 			console.error(error);
 			}
@@ -151,9 +132,9 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 		// Add lights
 		let hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.61);
 		hemiLight.position.set(0, 50, 0);
+
 		// Add hemisphere light to scene
 		scene.add(hemiLight);
-
 		let d = 8.25;
 		let dirLight = new THREE.DirectionalLight(0xffffff, 0.54);
 		dirLight.position.set(-8, 12, 8);
@@ -168,28 +149,6 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 
 		// Add directional Light to scene
 		scene.add(dirLight);
-
-		// Floor
-		let floorGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
-		let floorMaterial = new THREE.MeshPhongMaterial({
-		color: 0xff0000,
-		shininess: 0,
-		});
-
-		let floor = new THREE.Mesh(floorGeometry, floorMaterial);
-		floor.rotation.x = -0.5 * Math.PI; // This is 90 degrees by the way
-		floor.receiveShadow = true;
-		floor.position.y = -11;
-		scene.add(floor);
-
-		//background cube
-		let geometry = new THREE.SphereGeometry(8, 32, 32);
-		let material = new THREE.MeshBasicMaterial({ color: 0x9bffaf }); // 0xf2ce2e 
-		let sphere = new THREE.Mesh(geometry, material);
-		sphere.position.z = -15;
-		sphere.position.y = -2.5;
-		sphere.position.x = -0.25;
-		//scene.add(sphere);
 
       }
 	  function update() {
@@ -255,12 +214,12 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 			playOnClick(0);
 			playOnClick(6);
 			playOnClick(10);
-			// create an AudioListener and add it to the camera
+
+			// create an AudioListener 
 			const listener = new THREE.AudioListener();
-	
 			// create a global audio source
 			const sound = new THREE.Audio( listener );
-			const file = './sounds/clip1.1.wav';
+			const file = './sounds/clip1.mp3';
 			// load a sound and set it as the Audio object's buffer
 			const audioLoader = new THREE.AudioLoader();
 			audioLoader.load( file, function( buffer ) {
@@ -278,13 +237,14 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 				playOnClick(1);
 				playOnClick(7);
 				playOnClick(11);
+			
 
 			// create an AudioListener and add it to the camera
 			const listener = new THREE.AudioListener();
 	
 			// create a global audio source
 			const sound = new THREE.Audio( listener );
-			const file = './sounds/clip2-[AudioTrimmer.com].wav';
+			const file = './sounds/clip2.mp3';
 			// load a sound and set it as the Audio object's buffer
 			const audioLoader = new THREE.AudioLoader();
 			audioLoader.load( file, function( buffer ) {
@@ -298,9 +258,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 		}
 		}
 
-		if (object.name !== 'disk002'||'disk001') {
-		
-
+		if (object.name !== 'disk002'&& object.name !== 'disk001') {
 			// create an AudioListener and add it to the camera
 			const listener = new THREE.AudioListener();
 	
@@ -324,15 +282,14 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 
 	// Get a animation, and play it 
 	function playOnClick(anim) {
-		//let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
-		playModifierAnimation(idle, 0.25, possibleAnims[anim], 0.25);
+		playModifierAnimation(idle, 0.15, possibleAnims[anim], 0.15);
 	  }
 
 	function playModifierAnimation(from, fSpeed, to, tSpeed) {
 	to.setLoop(THREE.LoopOnce);
 	to.reset();
 	to.play();
-	 from.crossFadeTo(to, fSpeed, true);
+	from.crossFadeTo(to, fSpeed, true);
 	setTimeout(function() {
 		from.enabled = true;
 		to.crossFadeTo(from, tSpeed, true);
