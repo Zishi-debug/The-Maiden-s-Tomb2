@@ -1,7 +1,7 @@
 
-import * as THREE from '../node_modules/three/build/three.module.js';
-import { GLTFLoader } from './node_modules/three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from './node_modules/three/addons/environments/RoomEnvironment.js';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 
 (function() {
