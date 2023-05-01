@@ -26,7 +26,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 	  init(); 
 
       function init() {
-		const MODEL_PATH = '/models/Maho_ model_ to 3js.glb';
+		const MODEL_PATH = './models/Maho_ model_ to 3js.glb';
 		const canvas = document.querySelector('#c');
         const backgroundColor = 0xecf2e6;
 
