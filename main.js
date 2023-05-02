@@ -224,12 +224,16 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 			//disk1
 			if (object.name === 'disk001') {
 				disk1 = true;
+				disk2 = false;
 				playDisk(disk1, disk2);
+				console.log("disk1="+disk1);
 			}
 			//disk2
 			if (object.name === 'disk002') {
+				disk1 = false;
 				disk2 = true;
 				playDisk(disk1, disk2);
+				console.log("disk2="+disk2);
 			}
 
 			if (object.name !== 'disk002' && object.name !== 'disk001') {
@@ -314,7 +318,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 				});
 			}
 		}
-		console.log(disk1);
+		
 	}
 
 	//type text one by one
