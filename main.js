@@ -273,8 +273,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 				playOnClick(6);
 				playOnClick(10);
 				//show text
-				message2.textContent = "In this code, we first create the dialogue box as a div element using the createElement method of the document object. We set some styles for the dialogue box, ";
-				showText(message2.textContent, dialogueBox2, 50);
+				message2.textContent = "I did it! I finally became a streamer! ٩(｡•́‿•̀｡)۶ I can't believe it. I've been thinking about this for so long, and now it's finally happening. It started this morning. I woke up early and set up my computer and camera. I was so nervous. What if no one watched me? What if I was terrible at it?But then, I hit 'start streaming', and it was like magic. People started joining my stream right away. At first, it was just a few people, but then more and more started coming. They were all so nice and supportive. They were telling me I was doing a great job, and that I was cute and funny. (^▽^)It was amazing.  ";
+				showText(message2.textContent, dialogueBox2, 24);
 				dialogueBox2.style.display = "block";
 
 				// create an AudioListener 
@@ -298,8 +298,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 				playOnClick(7);
 				playOnClick(11);
 				//show text
-				message.textContent = "In this code, we first create the dialogue box as a div element using the createElement method of the document object. We set some styles for the dialogue box, ";
-				showText(message.textContent, dialogueBox, 50);
+				message.textContent = "Today was a tough day. I tried to make some new content on my stream to keep my fans interested, but it seems like they are more interested in fighting with each other in the chat. It's frustrating because I put so much effort into creating something new and different for them, but it feels like no one is even paying attention to me. I feel like my fans are not really here for me anymore. They're just here for the drama and the arguments. It's like I'm just a backdrop for their entertainment. I wish they would focus on me, on what I have to offer, on who I am as a person. ";
+				showText(message.textContent, dialogueBox, 30);
 				dialogueBox.style.display = "block";
 
 				// create an AudioListener 
