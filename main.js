@@ -42,7 +42,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 	document.body.appendChild(dialogueBox2);	
 	// Create the message element2
 	var message2 = document.createElement("div");
-	message2.classList.add("message2");
+	message2.classList.add("message");
 
 
 	function init() {

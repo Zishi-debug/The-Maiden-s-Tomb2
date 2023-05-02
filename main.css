@@ -150,6 +150,10 @@ h1 {
     max-width: 500px; /* Add this line to limit the width */
 }
 
+.message {
+    color: blue;
+}
+
 @keyframes flip {
     0% {
         transform: rotate(0);
