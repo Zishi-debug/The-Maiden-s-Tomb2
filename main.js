@@ -26,7 +26,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 	var disk2 = false;
 
 	init();
-	// Create the dialogue box in html
+	// Create the dialogue box in htmls
 	var dialogueBox = document.createElement("div");
 	dialogueBox.classList.add("dialogue-box");
 	dialogueBox.style.display = "none";
@@ -196,10 +196,12 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 		if (event.key === "z" || event.key === "A") {
 			console.log("Z key pressed");
 			disk1 = true;
+			disk2 = false;
 			playDisk(disk1, disk2);
 		}
 		if (event.key === "x" || event.key === "A") {
 			console.log("X key pressed");
+			disk1 = false;
 			disk2 = true;
 			playDisk(disk1, disk2);
 		}
